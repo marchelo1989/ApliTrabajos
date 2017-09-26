@@ -6,6 +6,7 @@
 package Cl.Burgos.Trabajos.ENT;
 
 import Cl.Burgos.Trabajos.EXP.ExpCliente;
+import Cl.Burgos.Trabajos.FUN.Metodos;
 
 /**
  *
@@ -53,8 +54,12 @@ public class ClCliente {
         return correo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCorreo(String correo) throws Exception {
+        if(!Metodos.validateEmail(correo)){
+            throw new ExpCliente(ExpCliente.ERR_correo);
+        }else{
+            this.correo = correo;
+        }
     }
 
     public ClCliente(int idCliente) throws Exception {
