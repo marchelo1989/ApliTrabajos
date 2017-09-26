@@ -525,7 +525,7 @@ public class FrClientes extends javax.swing.JFrame {
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
         Character c = evt.getKeyChar();
-        if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE){
+        if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE && c != KeyEvent.VK_BACK_SPACE){
             evt.consume();
             JOptionPane.showMessageDialog(this, "Ingrese solo Letras y espacio");
             txtNombre.setCursor(null);
@@ -583,7 +583,7 @@ public class FrClientes extends javax.swing.JFrame {
     private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
         // TODO add your handling code here:
         Character c = evt.getKeyChar();
-        if(!Character.isDigit(c)){
+        if(!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE){
             evt.consume();
             JOptionPane.showMessageDialog(this, "Ingrese solo Numero \n Ejemplo:9XXXXXXXX");
             txtCelular.setCursor(null);
