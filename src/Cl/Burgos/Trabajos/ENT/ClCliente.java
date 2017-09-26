@@ -46,8 +46,12 @@ public class ClCliente {
         return celular;
     }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setCelular(String celular) throws Exception {
+        if(celular.length()<9){
+            throw new ExpCliente(ExpCliente.ERR_celular);
+        }else{
+            this.celular = celular;
+        }
     }
 
     public String getCorreo() {
