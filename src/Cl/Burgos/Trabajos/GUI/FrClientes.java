@@ -8,6 +8,7 @@ package Cl.Burgos.Trabajos.GUI;
 import Cl.Burgos.Trabajos.BD.Log;
 import Cl.Burgos.Trabajos.DAO.DAOCliente;
 import Cl.Burgos.Trabajos.ENT.ClCliente;
+import Cl.Burgos.Trabajos.FUN.Metodos;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,6 @@ public class FrClientes extends javax.swing.JFrame {
         txtId.setEditable(false);
         txtNumReg.setText("5");
         txtPagina.setText("1");
-        
         
         
         defineTablaClientes("",1);
