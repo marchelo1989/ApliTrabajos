@@ -47,10 +47,14 @@ public class ClCliente {
     }
 
     public void setCelular(String celular) throws Exception {
-        if(celular.length()<9){
-            throw new ExpCliente(ExpCliente.ERR_celular);
-        }else{
+        if(celular.length()==0){
             this.celular = celular;
+        }else{
+            if(celular.length()<9){
+                throw new ExpCliente(ExpCliente.ERR_celular);
+            }else{
+                this.celular = celular;
+            }
         }
     }
 
@@ -59,10 +63,14 @@ public class ClCliente {
     }
 
     public void setCorreo(String correo) throws Exception {
-        if(!Metodos.validateEmail(correo)){
-            throw new ExpCliente(ExpCliente.ERR_correo);
-        }else{
+        if(correo.length()==0){
             this.correo = correo;
+        }else{
+            if(!Metodos.validateEmail(correo)){
+                throw new ExpCliente(ExpCliente.ERR_correo);
+            }else{
+                this.correo = correo;
+            }
         }
     }
 

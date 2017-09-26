@@ -13,7 +13,9 @@ public class PlaceHolder {
     String nombre="Ej:Francisco Rojas";
     String celular="Ej:9XXXXXXXX";
     String correo="Ej:ejemplo@ejemplo.com";
-
+    String descripcion="Ej:El trabajo Tiene algunos detalles termindado .....";
+    String valor="Ej:10000";
+    
     public String getNombre() {
         return nombre;
     }
@@ -37,4 +39,21 @@ public class PlaceHolder {
     public void setCorreo(String Correo) {
         this.correo = correo;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+    
 }

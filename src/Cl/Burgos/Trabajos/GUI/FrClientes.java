@@ -64,14 +64,34 @@ public class FrClientes extends javax.swing.JFrame {
         d.Mensaje(txtCelular, ph.getCelular(), 0);
         d.Mensaje(txtCorreo, ph.getCorreo(), 0);
     }
+    public boolean comparar(String n,String n2){
+        boolean v;
+        if(n!=n2){
+            v=false;
+        }
+        return false;
+    }
     
     public ClCliente datosClienteAll() throws Exception{
+        
         ClCliente cliente = new ClCliente(Integer.parseInt(txtId.getText()), 
                 txtNombre.getText(), txtCelular.getText(), txtCorreo.getText());
         return cliente;
     }
     public ClCliente datosCliente() throws Exception{
-        ClCliente cliente = new ClCliente(txtNombre.getText(), txtCelular.getText(), txtCorreo.getText());
+        String celular;
+        String correo;
+        if(!comparar(txtCelular.getText(), ph.getCelular())){
+            celular="";
+        }else{
+            celular=txtCelular.getText();
+        }
+        if(!comparar(txtCorreo.getText(), ph.getCorreo())){
+            correo="";
+        }else{
+            correo=txtCorreo.getText();
+        }
+        ClCliente cliente = new ClCliente(txtNombre.getText(), celular, correo);
         return cliente;
     }
     public ClCliente idCliente() throws Exception{
@@ -129,6 +149,7 @@ public class FrClientes extends javax.swing.JFrame {
         btnModificar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnAgregar.setEnabled(false);
+        IniciarAyuda();
     }
     
     /**
@@ -179,7 +200,7 @@ public class FrClientes extends javax.swing.JFrame {
 
         jLabel1.setText("Id:");
 
-        jLabel2.setText("Nombre:");
+        jLabel2.setText("Nombre:*");
 
         jLabel3.setText("Celular:");
 
@@ -531,8 +552,11 @@ public class FrClientes extends javax.swing.JFrame {
         String[] datosCliente =new String[6];
         fila = this.JTabClientes.rowAtPoint(evt.getPoint());
         long lngCliente;
-
+        
         if (fila > -1){
+            d.Clic(txtNombre,  ph.getNombre());
+            d.Clic(txtCelular,  ph.getCelular());
+            d.Clic(txtCorreo,  ph.getCorreo());
             try {
                 this.txtId.setText(String.valueOf(JTabClientes.getValueAt(fila, 0)));
                 
@@ -545,6 +569,8 @@ public class FrClientes extends javax.swing.JFrame {
                 
                 this.btnModificar.setEnabled(true);
                 this.btnEliminar.setEnabled(true);
+                
+                
 //                if(Long.valueOf( datosCliente[0])>0){
 //                    this.btnActualizar.setLabel("Actualizar");
 //                }
