@@ -68,12 +68,12 @@ public class FrClientes extends javax.swing.JFrame {
         boolean v;
         if(n!=n2){
             v=false;
+        }else{
+            v=true;
         }
-        return false;
+        return v;
     }
-    
     public ClCliente datosClienteAll() throws Exception{
-        
         ClCliente cliente = new ClCliente(Integer.parseInt(txtId.getText()), 
                 txtNombre.getText(), txtCelular.getText(), txtCorreo.getText());
         return cliente;
@@ -142,6 +142,7 @@ public class FrClientes extends javax.swing.JFrame {
     
     public void Limpiar(){
         txtId.setText("");
+        txtPagina.setText("1");
         txtNombre.setText("");
         txtCelular.setText("");
         txtCorreo.setText("");

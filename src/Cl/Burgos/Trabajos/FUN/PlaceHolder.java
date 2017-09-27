@@ -10,11 +10,14 @@ package Cl.Burgos.Trabajos.FUN;
  * @author march
  */
 public class PlaceHolder {
+    //Cliente
     String nombre="Ej:Francisco Rojas";
     String celular="Ej:9XXXXXXXX";
     String correo="Ej:ejemplo@ejemplo.com";
+    //Trabajo
+    String nombreT="Ej:Mantecion y Reparacion";
     String descripcion="Ej:El trabajo Tiene algunos detalles termindado .....";
-    String valor="Ej:10000";
+    String valor="Ej:1000";
     
     public String getNombre() {
         return nombre;
@@ -54,6 +57,14 @@ public class PlaceHolder {
 
     public void setValor(String valor) {
         this.valor = valor;
+    }
+
+    public String getNombreT() {
+        return nombreT;
+    }
+
+    public void setNombreT(String nombreT) {
+        this.nombreT = nombreT;
     }
     
 }

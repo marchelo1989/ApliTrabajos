@@ -12,6 +12,7 @@ import Cl.Burgos.Trabajos.ENT.ClTrabajo;
 import Cl.Burgos.Trabajos.FUN.Diseño;
 import Cl.Burgos.Trabajos.FUN.FormatoFecha;
 import Cl.Burgos.Trabajos.FUN.PlaceHolder;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,8 @@ public class FrHome extends javax.swing.JFrame {
 
     DAOCliente dAOCliente = new DAOCliente();
     DAOTrabajos dAOTrabajos = new DAOTrabajos();
-    
+    Diseño d = new Diseño();
+    PlaceHolder ph = new PlaceHolder();
     int idCliente;
     long lngNumPaginas;
     
@@ -35,12 +37,19 @@ public class FrHome extends javax.swing.JFrame {
      */
     public FrHome() {
         initComponents();
+        txtNumReg.setText("9");
+        txtPagina.setText("1");
+        
+        IniciarAyuda();
         
         this.setLocationRelativeTo(null);
         this.setResizable(false); 
         this.setTitle("Trabajos");
         //Bloquear casillas
         txtIdT.setEnabled(false);
+        btnAgregarT.setEnabled(false);
+        btnModificarT.setEnabled(false);
+        btnEliminarT.setEnabled(false);
         
         //para Cargar el ComboBox
         this.jcbClientes.setSelectedItem(null);
@@ -49,49 +58,78 @@ public class FrHome extends javax.swing.JFrame {
         
     }
     
-    public ClTrabajo idTrabajo(){
+    public void IniciarAyuda() {
+        d.Mensaje(txtNombre, ph.getNombreT(), 0);
+        d.Mensaje(txtAbono, ph.getValor(), 0);
+        d.Mensaje(txtPago, ph.getValor(), 0);
+        d.Mensaje(txtTotal, ph.getValor(), 0);
+    }
+    public boolean comparar(String n,String n2){
+        boolean v;
+        if(n!=n2){
+            v=false;
+        }else{
+            v=true;
+        }
+        return v;
+    }
+    public void Limpiar(){
+        txtIdT.setText("");
+        txtPagina.setText("1");
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        txtAbono.setText("");
+        txtPago.setText("");
+        txtTotal.setText("");
+        txtFechaI.setDate(null);
+        txtFechaT.setDate(null);
+        btnAgregarT.setEnabled(false);
+        btnModificarT.setEnabled(false);
+        btnEliminarT.setEnabled(false);
+    }
+    public ClTrabajo idTrabajo() throws Exception{
         ClTrabajo clTrabajo = new ClTrabajo(Integer.parseInt(txtIdT.getText()));
         return clTrabajo;
     }
-    public ClTrabajo IntTrabajo(){
-        java.util.Date di = txtFechaI.getDate();
-        java.sql.Date dInicio;
-        if(di==null){
-            dInicio = null;
-        }else{
-            dInicio = new java.sql.Date(di.getTime());
-        }
-        java.util.Date dt = txtFechaT.getDate();
-        java.sql.Date dTermino;
-        if(dt==null){
-            dTermino = null;
-        }else{
-            dTermino = new java.sql.Date(dt.getTime());
-        }
+    public ClTrabajo IntTrabajo() throws Exception{
+        String abono,pago,total;
+        if(!comparar(txtAbono.getText(), ph.getValor())){abono="";
+        }else{abono=txtAbono.getText();}
+        if(!comparar(txtPago.getText(), ph.getValor())){pago="";
+        }else{pago=txtPago.getText();}
+        if(!comparar(txtTotal.getText(), ph.getValor())){total="";
+        }else{total=txtTotal.getText();}
         ClTrabajo clTrabajo = new ClTrabajo(txtNombre.getText(), txtDescripcion.getText(), 
-                Integer.parseInt(txtAbono.getText()), Integer.parseInt(txtPago.getText()), 
-                Integer.parseInt(txtTotal.getText()),dInicio , dTermino, idCliente);
+                Integer.parseInt(campoNume(abono)), Integer.parseInt(campoNume(pago)), 
+                Integer.parseInt(campoNume(total)),campoFecha(txtFechaI.getDate()) , 
+                campoFecha(txtFechaT.getDate()), idCliente);
         return clTrabajo;
     }
-    public ClTrabajo allTrabajo(){
-        java.util.Date di = txtFechaI.getDate();
-        java.sql.Date dInicio;
-        if(di==null){
-            dInicio = null;
-        }else{
-            dInicio = new java.sql.Date(di.getTime());
-        }
-        java.util.Date dt = txtFechaT.getDate();
-        java.sql.Date dTermino;
-        if(dt==null){
-            dTermino = null;
-        }else{
-            dTermino = new java.sql.Date(dt.getTime());
-        }
+    public ClTrabajo allTrabajo() throws Exception{
         ClTrabajo clTrabajo = new ClTrabajo(Integer.parseInt(txtIdT.getText()), txtNombre.getText(), txtDescripcion.getText(), 
-                Integer.parseInt(txtAbono.getText()), Integer.parseInt(txtPago.getText()), 
-                Integer.parseInt(txtTotal.getText()),dInicio , dTermino, idCliente);
+                Integer.parseInt(campoNume(txtAbono.getText())), Integer.parseInt(campoNume(txtPago.getText())), 
+                Integer.parseInt(campoNume(txtTotal.getText())),campoFecha(txtFechaI.getDate()) , 
+                campoFecha(txtFechaT.getDate()), idCliente);
         return clTrabajo;
+    }
+    
+    public String campoNume(String nu){
+        String numero;
+        if(nu.length()==0){
+            numero="0";
+        }else{
+            numero=nu;
+        }
+        return numero;
+    }
+    public java.sql.Date campoFecha(java.util.Date fc){
+        java.sql.Date fecha;
+        if(fc==null){
+            fecha = null;
+        }else{
+            fecha = new java.sql.Date(fc.getTime());
+        }
+        return fecha;
     }
     
     public void defineTablaTrabajos(String strBusqueda,long DesdeHoja){
@@ -290,9 +328,76 @@ public class FrHome extends javax.swing.JFrame {
 
         jLabel9.setText("Fecha Termino:");
 
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNombreMouseClicked(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
+
+        txtAbono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAbonoFocusLost(evt);
+            }
+        });
+        txtAbono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAbonoMouseClicked(evt);
+            }
+        });
+        txtAbono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAbonoKeyTyped(evt);
+            }
+        });
+
+        txtPago.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPagoFocusLost(evt);
+            }
+        });
+        txtPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPagoMouseClicked(evt);
+            }
+        });
+        txtPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPagoKeyTyped(evt);
+            }
+        });
+
+        txtTotal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTotalFocusLost(evt);
+            }
+        });
+        txtTotal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTotalMouseClicked(evt);
+            }
+        });
+        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -376,21 +481,7 @@ public class FrHome extends javax.swing.JFrame {
 
         jlblNumReg.setText("Registros");
 
-        txtNumReg.setText("5");
-        txtNumReg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumRegActionPerformed(evt);
-            }
-        });
-
         jlblNumReg2.setText("Pagina ");
-
-        txtPagina.setText("1");
-        txtPagina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPaginaActionPerformed(evt);
-            }
-        });
 
         jlblTotalPaginas.setText("Pagina ");
 
@@ -406,17 +497,6 @@ public class FrHome extends javax.swing.JFrame {
         cmdSiguiente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdSiguiente1ActionPerformed(evt);
-            }
-        });
-
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyPressed(evt);
             }
         });
 
@@ -617,14 +697,6 @@ public class FrHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTabTrabajosMouseClicked
 
-    private void txtNumRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumRegActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumRegActionPerformed
-
-    private void txtPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaginaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPaginaActionPerformed
-
     private void cmdAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAtrasActionPerformed
         long lngValor=0;
         if(1<Long.valueOf( this.txtPagina.getText())){
@@ -642,14 +714,6 @@ public class FrHome extends javax.swing.JFrame {
             defineTablaTrabajos(Integer.toString(idCliente),lngValor);
         }
     }//GEN-LAST:event_cmdSiguiente1ActionPerformed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
-    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarKeyPressed
 
     private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
         //        defineTablaClientesAll(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()),idCliente);
@@ -672,35 +736,134 @@ public class FrHome extends javax.swing.JFrame {
                 String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
                 idCliente = Integer.parseInt(r.replace("#", ""));
                 defineTablaTrabajos(Integer.toString(idCliente),1);
+                Limpiar();
             }
         } catch (Exception ex) {
             Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnAgregarTActionPerformed
 
     private void btnModificarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTActionPerformed
-        // TODO add your handling code here:
-        if(!dAOTrabajos.sqlUpdate(allTrabajo())){
-            JOptionPane.showMessageDialog(null, "Trabajo No Modificado");
-        }else{
-            JOptionPane.showMessageDialog(null, "Trabajo Modificado");
-            String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
-            idCliente = Integer.parseInt(r.replace("#", ""));
-            defineTablaTrabajos(Integer.toString(idCliente),1);
+        try {
+            // TODO add your handling code here:
+            if(!dAOTrabajos.sqlUpdate(allTrabajo())){
+                JOptionPane.showMessageDialog(null, "Trabajo No Modificado");
+            }else{
+                JOptionPane.showMessageDialog(null, "Trabajo Modificado");
+                String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
+                idCliente = Integer.parseInt(r.replace("#", ""));
+                defineTablaTrabajos(Integer.toString(idCliente),1);
+                Limpiar();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarTActionPerformed
 
     private void btnEliminarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTActionPerformed
-        // TODO add your handling code here:
-        if(!dAOTrabajos.sqlDelete(idTrabajo())){
-            JOptionPane.showMessageDialog(null, "Trabajo No Eliminado");
-        }else{
-            JOptionPane.showMessageDialog(null, "Trabajo Eliminado");
-            String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
-            idCliente = Integer.parseInt(r.replace("#", ""));
-            defineTablaTrabajos(Integer.toString(idCliente),1);
+        try {
+            // TODO add your handling code here:
+            if(!dAOTrabajos.sqlDelete(idTrabajo())){
+                JOptionPane.showMessageDialog(null, "Trabajo No Eliminado");
+            }else{
+                JOptionPane.showMessageDialog(null, "Trabajo Eliminado");
+                String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
+                idCliente = Integer.parseInt(r.replace("#", ""));
+                defineTablaTrabajos(Integer.toString(idCliente),1);
+                Limpiar();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnEliminarTActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        Character c = evt.getKeyChar();
+        if(!Character.isLetter(c) && c != KeyEvent.VK_SPACE && c != KeyEvent.VK_BACK_SPACE){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo Letras y Espacios");
+            txtNombre.setCursor(null);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        // TODO add your handling code here:
+        btnAgregarT.setEnabled(txtNombre.getText().length() != 0);
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtAbonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbonoKeyTyped
+        // TODO add your handling code here:
+        Character c = evt.getKeyChar();
+        if(!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo Numeros");
+            txtAbono.setCursor(null);
+        }
+    }//GEN-LAST:event_txtAbonoKeyTyped
+
+    private void txtPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagoKeyTyped
+        // TODO add your handling code here:
+        Character c = evt.getKeyChar();
+        if(!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo Numeros");
+            txtPago.setCursor(null);
+        }
+    }//GEN-LAST:event_txtPagoKeyTyped
+
+    private void txtTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyTyped
+        // TODO add your handling code here:
+        Character c = evt.getKeyChar();
+        if(!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo Numeros");
+            txtTotal.setCursor(null);
+        }
+    }//GEN-LAST:event_txtTotalKeyTyped
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        // TODO add your handling code here:
+        d.Mensaje(txtNombre, ph.getNombreT(), txtNombre.getText().trim().length());
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseClicked
+        // TODO add your handling code here:
+        d.Clic(txtNombre,  ph.getNombreT());
+    }//GEN-LAST:event_txtNombreMouseClicked
+
+    private void txtAbonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAbonoFocusLost
+        // TODO add your handling code here:
+        d.Mensaje(txtAbono, ph.getValor(), txtAbono.getText().trim().length());
+    }//GEN-LAST:event_txtAbonoFocusLost
+
+    private void txtAbonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAbonoMouseClicked
+        // TODO add your handling code here:
+        d.Clic(txtAbono,  ph.getValor());
+    }//GEN-LAST:event_txtAbonoMouseClicked
+
+    private void txtPagoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPagoFocusLost
+        // TODO add your handling code here:
+        d.Mensaje(txtPago, ph.getValor(), txtPago.getText().trim().length());
+    }//GEN-LAST:event_txtPagoFocusLost
+
+    private void txtPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPagoMouseClicked
+        // TODO add your handling code here:
+        d.Clic(txtPago,  ph.getValor());
+    }//GEN-LAST:event_txtPagoMouseClicked
+
+    private void txtTotalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTotalFocusLost
+        // TODO add your handling code here:
+        d.Mensaje(txtTotal, ph.getValor(), txtTotal.getText().trim().length());
+    }//GEN-LAST:event_txtTotalFocusLost
+
+    private void txtTotalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTotalMouseClicked
+        // TODO add your handling code here:
+        d.Clic(txtTotal,  ph.getValor());
+    }//GEN-LAST:event_txtTotalMouseClicked
 
     
     /**

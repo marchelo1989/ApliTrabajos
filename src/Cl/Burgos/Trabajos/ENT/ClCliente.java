@@ -23,7 +23,7 @@ public class ClCliente {
     }
 
     public void setIdCliente(int idCliente) throws Exception {
-        if(idCliente<0){
+        if(idCliente<=0){
             throw new ExpCliente(ExpCliente.ERR_idCliente);
         }else{
             this.idCliente = idCliente;
