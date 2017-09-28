@@ -60,6 +60,7 @@ public class FrHome extends javax.swing.JFrame {
     
     public void IniciarAyuda() {
         d.Mensaje(txtNombre, ph.getNombreT(), 0);
+        d.MensajeA(txtDescripcion, ph.getDescripcion(), 0);
         d.Mensaje(txtAbono, ph.getValor(), 0);
         d.Mensaje(txtPago, ph.getValor(), 0);
         d.Mensaje(txtTotal, ph.getValor(), 0);
@@ -92,14 +93,16 @@ public class FrHome extends javax.swing.JFrame {
         return clTrabajo;
     }
     public ClTrabajo IntTrabajo() throws Exception{
-        String abono,pago,total;
+        String descripcion,abono,pago,total;
         if(!comparar(txtAbono.getText(), ph.getValor())){abono="";
         }else{abono=txtAbono.getText();}
+        if(!comparar(txtDescripcion.getText(), ph.getDescripcion())){descripcion="";
+        }else{descripcion=txtDescripcion.getText();}
         if(!comparar(txtPago.getText(), ph.getValor())){pago="";
         }else{pago=txtPago.getText();}
         if(!comparar(txtTotal.getText(), ph.getValor())){total="";
         }else{total=txtTotal.getText();}
-        ClTrabajo clTrabajo = new ClTrabajo(txtNombre.getText(), txtDescripcion.getText(), 
+        ClTrabajo clTrabajo = new ClTrabajo(txtNombre.getText(), descripcion, 
                 Integer.parseInt(campoNume(abono)), Integer.parseInt(campoNume(pago)), 
                 Integer.parseInt(campoNume(total)),campoFecha(txtFechaI.getDate()) , 
                 campoFecha(txtFechaT.getDate()), idCliente);
@@ -349,6 +352,16 @@ public class FrHome extends javax.swing.JFrame {
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDescripcionFocusLost(evt);
+            }
+        });
+        txtDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDescripcionMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtDescripcion);
 
         txtAbono.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -864,6 +877,16 @@ public class FrHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         d.Clic(txtTotal,  ph.getValor());
     }//GEN-LAST:event_txtTotalMouseClicked
+
+    private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
+        // TODO add your handling code here:
+        d.MensajeA(txtDescripcion, ph.getDescripcion(), txtDescripcion.getText().trim().length());
+    }//GEN-LAST:event_txtDescripcionFocusLost
+
+    private void txtDescripcionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionMouseClicked
+        // TODO add your handling code here:
+        d.ClicA(txtDescripcion,  ph.getDescripcion());
+    }//GEN-LAST:event_txtDescripcionMouseClicked
 
     
     /**
