@@ -5,6 +5,7 @@
  */
 package Cl.Burgos.Trabajos.FUN;
 
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -23,6 +24,21 @@ public class Diseño {
     }
 
     public void Clic(JTextField letra, String Mensaje) {
+        if (letra.getText().equals(Mensaje)) {
+            letra.setText("");
+            letra.setForeground(java.awt.Color.decode(negro));
+        }
+
+    }
+    
+    public void MensajeA(JTextArea letra, String Mensaje, int tamaño) {
+        if (tamaño == 0) {
+            letra.setText(Mensaje);
+            letra.setForeground(java.awt.Color.decode(plomo));
+        }
+    }
+
+    public void ClicA(JTextArea letra, String Mensaje) {
         if (letra.getText().equals(Mensaje)) {
             letra.setText("");
             letra.setForeground(java.awt.Color.decode(negro));
