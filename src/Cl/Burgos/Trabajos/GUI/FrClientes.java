@@ -13,7 +13,11 @@ import Cl.Burgos.Trabajos.FUN.PlaceHolder;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,15 +51,22 @@ public class FrClientes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false); 
         this.setTitle("Clientes");
-//        String url="/Cl/Burgos/Reparaciones/IMG/";
-//        setIconImage(new ImageIcon(getClass().getResource(url+"Reparaciones_icono.png")).getImage());
-//        ((JPanel)getContentPane()).setOpaque(false);
-//        ImageIcon MyImgCustom =new ImageIcon(this.getClass().getResource(url+"fondo1.jpg"));
-//        JLabel fondo= new JLabel();
-//        
-//        fondo.setIcon(MyImgCustom);
-//        getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
-//        fondo.setBounds(0,0,MyImgCustom.getIconWidth(),MyImgCustom.getIconHeight());
+        
+        jPanel1.setOpaque(false);
+        jPanel2.setOpaque(false);
+        jPanel3.setOpaque(false);
+        jPanel4.setOpaque(false);
+        jPanel5.setOpaque(false);
+        
+        String url="/Cl/Burgos/Trabajos/IMG/";
+        setIconImage(new ImageIcon(getClass().getResource(url+"Trabajo_icono.png")).getImage());
+        ((JPanel)getContentPane()).setOpaque(false);
+        ImageIcon MyImgCustom =new ImageIcon(this.getClass().getResource(url+"fondo1.jpg"));
+        JLabel fondo= new JLabel();
+        
+        fondo.setIcon(MyImgCustom);
+        getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0,0,MyImgCustom.getIconWidth(),MyImgCustom.getIconHeight());
         
     }
     
@@ -624,6 +635,7 @@ public class FrClientes extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
             Logger.getLogger(FrClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -638,6 +650,7 @@ public class FrClientes extends javax.swing.JFrame {
             }
         } catch (Exception ex) {
             Logger.getLogger(FrClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

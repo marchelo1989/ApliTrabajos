@@ -16,7 +16,11 @@ import java.awt.event.KeyEvent;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -56,6 +60,22 @@ public class FrHome extends javax.swing.JFrame {
         this.jcbClientes.removeAllItems();
         dAOCliente.llenarCombo(this.jcbClientes);
         
+        jPanel1.setOpaque(false);
+        jPanel2.setOpaque(false);
+        jPanel3.setOpaque(false);
+        jPanel4.setOpaque(false);
+        jPanel5.setOpaque(false);
+        jPanel6.setOpaque(false);
+        
+        String url="/Cl/Burgos/Trabajos/IMG/";
+        setIconImage(new ImageIcon(getClass().getResource(url+"Trabajo_icono.png")).getImage());
+        ((JPanel)getContentPane()).setOpaque(false);
+        ImageIcon MyImgCustom =new ImageIcon(this.getClass().getResource(url+"fondo2.jpg"));
+        JLabel fondo= new JLabel();
+        
+        fondo.setIcon(MyImgCustom);
+        getLayeredPane().add(fondo,JLayeredPane.FRAME_CONTENT_LAYER);
+        fondo.setBounds(0,0,MyImgCustom.getIconWidth(),MyImgCustom.getIconHeight());
     }
     
     public void IniciarAyuda() {
