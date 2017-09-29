@@ -93,14 +93,14 @@ public class FrClientes extends javax.swing.JFrame {
         String celular;
         String correo;
         if(!comparar(txtCelular.getText(), ph.getCelular())){
-            celular="";
-        }else{
             celular=txtCelular.getText();
+        }else{
+            celular="";
         }
         if(!comparar(txtCorreo.getText(), ph.getCorreo())){
-            correo="";
-        }else{
             correo=txtCorreo.getText();
+        }else{
+            correo="";
         }
         ClCliente cliente = new ClCliente(txtNombre.getText(), celular, correo);
         return cliente;
@@ -616,6 +616,7 @@ public class FrClientes extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrClientes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
+            Log.log(ex.getMessage());
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -636,6 +637,7 @@ public class FrClientes extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrClientes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
+            Log.log(ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -651,6 +653,7 @@ public class FrClientes extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrClientes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
+            Log.log(ex.getMessage());
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -691,7 +694,7 @@ public class FrClientes extends javax.swing.JFrame {
 
     private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
         // TODO add your handling code here:
-        d.Mensaje(txtCorreo, ph.getNombre(), txtCorreo.getText().trim().length());
+        d.Mensaje(txtCorreo, ph.getCorreo(), txtCorreo.getText().trim().length());
     }//GEN-LAST:event_txtCorreoFocusLost
 
     private void txtCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMouseClicked

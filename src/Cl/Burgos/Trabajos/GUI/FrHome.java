@@ -54,6 +54,7 @@ public class FrHome extends javax.swing.JFrame {
         btnAgregarT.setEnabled(false);
         btnModificarT.setEnabled(false);
         btnEliminarT.setEnabled(false);
+        jTabTrabajos.setVisible(false);
         
         //para Cargar el ComboBox
         this.jcbClientes.setSelectedItem(null);
@@ -337,7 +338,7 @@ public class FrHome extends javax.swing.JFrame {
 
         jLabel2.setText("ID:");
 
-        jLabel3.setText("Nombre:");
+        jLabel3.setText("Nombre:*");
 
         jLabel4.setText("Descripcion:");
 
@@ -347,7 +348,7 @@ public class FrHome extends javax.swing.JFrame {
 
         jLabel7.setText("Total:");
 
-        jLabel8.setText("Fecha Inicio:");
+        jLabel8.setText("Fecha Inicio:*");
 
         jLabel9.setText("Fecha Termino:");
 
@@ -474,10 +475,10 @@ public class FrHome extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
-                                            .addComponent(txtFechaT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(txtFechaT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2))))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -694,7 +695,7 @@ public class FrHome extends javax.swing.JFrame {
         this.txtIdT.getText();
         String[] datosCliente =new String[9];
         fila = this.jTabTrabajos.rowAtPoint(evt.getPoint());
-           
+        
         if (fila > -1){
             try {
                 this.txtIdT.setText(String.valueOf(jTabTrabajos.getValueAt(fila, 0)));
@@ -756,6 +757,7 @@ public class FrHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
         idCliente = Integer.parseInt(r.replace("#", ""));
+        jTabTrabajos.setVisible(true);
         defineTablaTrabajos("", idCliente);
     }//GEN-LAST:event_btnBuscarCActionPerformed
 
@@ -774,6 +776,7 @@ public class FrHome extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
+            Log.log(ex.getMessage());
         }
     }//GEN-LAST:event_btnAgregarTActionPerformed
 
@@ -792,6 +795,7 @@ public class FrHome extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
+            Log.log(ex.getMessage());
         }
     }//GEN-LAST:event_btnModificarTActionPerformed
 
@@ -810,6 +814,7 @@ public class FrHome extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
+            Log.log(ex.getMessage());
         }
     }//GEN-LAST:event_btnEliminarTActionPerformed
 
