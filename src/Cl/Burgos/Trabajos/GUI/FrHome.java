@@ -108,6 +108,7 @@ public class FrHome extends javax.swing.JFrame {
         btnAgregarT.setEnabled(false);
         btnModificarT.setEnabled(false);
         btnEliminarT.setEnabled(false);
+        IniciarAyuda();
     }
     public ClTrabajo idTrabajo() throws Exception{
         ClTrabajo clTrabajo = new ClTrabajo(Integer.parseInt(txtIdT.getText()));
@@ -115,8 +116,11 @@ public class FrHome extends javax.swing.JFrame {
     }
     public ClTrabajo IntTrabajo() throws Exception{
         String descripcion,abono,pago,total;
-        if(!comparar(txtAbono.getText(), ph.getValor())){abono="";
-        }else{abono=txtAbono.getText();}
+        if(!comparar(txtAbono.getText(), ph.getValor())){
+            abono="0";
+        }else{
+            abono=txtAbono.getText();
+        }
         if(!comparar(txtDescripcion.getText(), ph.getDescripcion())){descripcion="";
         }else{descripcion=txtDescripcion.getText();}
         if(!comparar(txtPago.getText(), ph.getValor())){pago="";
@@ -124,7 +128,7 @@ public class FrHome extends javax.swing.JFrame {
         if(!comparar(txtTotal.getText(), ph.getValor())){total="";
         }else{total=txtTotal.getText();}
         ClTrabajo clTrabajo = new ClTrabajo(txtNombre.getText(), descripcion, 
-                Integer.parseInt(campoNume(abono)), Integer.parseInt(campoNume(pago)), 
+                Integer.parseInt(abono), Integer.parseInt(campoNume(pago)), 
                 Integer.parseInt(campoNume(total)),campoFecha(txtFechaI.getDate()) , 
                 campoFecha(txtFechaT.getDate()), idCliente);
         return clTrabajo;
@@ -758,6 +762,8 @@ public class FrHome extends javax.swing.JFrame {
         String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
         idCliente = Integer.parseInt(r.replace("#", ""));
         jTabTrabajos.setVisible(true);
+        txtNumReg.setText("9");
+        txtPagina.setText("1");
         defineTablaTrabajos("", idCliente);
     }//GEN-LAST:event_btnBuscarCActionPerformed
 

@@ -93,14 +93,14 @@ public class FrClientes extends javax.swing.JFrame {
         String celular;
         String correo;
         if(!comparar(txtCelular.getText(), ph.getCelular())){
-            celular=txtCelular.getText();
-        }else{
             celular="";
+        }else{
+            celular=txtCelular.getText();
         }
         if(!comparar(txtCorreo.getText(), ph.getCorreo())){
-            correo=txtCorreo.getText();
-        }else{
             correo="";
+        }else{
+            correo=txtCorreo.getText();
         }
         ClCliente cliente = new ClCliente(txtNombre.getText(), celular, correo);
         return cliente;
