@@ -108,6 +108,7 @@ public class FrHome extends javax.swing.JFrame {
         btnAgregarT.setEnabled(false);
         btnModificarT.setEnabled(false);
         btnEliminarT.setEnabled(false);
+        IniciarAyuda();
     }
     public ClTrabajo idTrabajo() throws Exception{
         ClTrabajo clTrabajo = new ClTrabajo(Integer.parseInt(txtIdT.getText()));
@@ -115,13 +116,13 @@ public class FrHome extends javax.swing.JFrame {
     }
     public ClTrabajo IntTrabajo() throws Exception{
         String descripcion,abono,pago,total;
-        if(!comparar(txtAbono.getText(), ph.getValor())){abono="";
+        if(comparar(txtAbono.getText(), ph.getValor())){abono="";
         }else{abono=txtAbono.getText();}
         if(!comparar(txtDescripcion.getText(), ph.getDescripcion())){descripcion="";
         }else{descripcion=txtDescripcion.getText();}
-        if(!comparar(txtPago.getText(), ph.getValor())){pago="";
+        if(comparar(txtPago.getText(), ph.getValor())){pago="";
         }else{pago=txtPago.getText();}
-        if(!comparar(txtTotal.getText(), ph.getValor())){total="";
+        if(comparar(txtTotal.getText(), ph.getValor())){total="";
         }else{total=txtTotal.getText();}
         ClTrabajo clTrabajo = new ClTrabajo(txtNombre.getText(), descripcion, 
                 Integer.parseInt(campoNume(abono)), Integer.parseInt(campoNume(pago)), 
@@ -249,6 +250,7 @@ public class FrHome extends javax.swing.JFrame {
         btnAgregarT = new javax.swing.JButton();
         btnModificarT = new javax.swing.JButton();
         btnEliminarT = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -611,17 +613,25 @@ public class FrHome extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Pagos Pendientes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnAgregarT)
                     .addComponent(btnModificarT)
+                    .addComponent(jButton1)
                     .addComponent(btnEliminarT))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,6 +642,8 @@ public class FrHome extends javax.swing.JFrame {
                 .addComponent(btnModificarT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminarT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -913,6 +925,12 @@ public class FrHome extends javax.swing.JFrame {
         d.ClicA(txtDescripcion,  ph.getDescripcion());
     }//GEN-LAST:event_txtDescripcionMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        FrPendientes fp=new FrPendientes();
+        fp.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -958,6 +976,7 @@ public class FrHome extends javax.swing.JFrame {
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdSiguiente1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

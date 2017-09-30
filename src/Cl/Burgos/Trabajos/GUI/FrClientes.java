@@ -92,12 +92,12 @@ public class FrClientes extends javax.swing.JFrame {
     public ClCliente datosCliente() throws Exception{
         String celular;
         String correo;
-        if(!comparar(txtCelular.getText(), ph.getCelular())){
+        if(comparar(txtCelular.getText(), ph.getCelular())){
             celular=txtCelular.getText();
         }else{
             celular="";
         }
-        if(!comparar(txtCorreo.getText(), ph.getCorreo())){
+        if(comparar(txtCorreo.getText(), ph.getCorreo())){
             correo=txtCorreo.getText();
         }else{
             correo="";

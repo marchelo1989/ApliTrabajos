@@ -99,9 +99,9 @@ public class DAOTrabajos {
         String strConsulta;
         String datos[]=new String [9];
       
-        strConsulta="call ProTrabajosListarIdC("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+id+");";
-//        strConsulta="SELECT idTrabajo, nombre, descripcion, abono, pago, total, fechaInicio, fechaTermino, Cliente_idCliente"
-//                + " FROM `trabajo` WHERE Cliente_idCliente="+id+";";
+//        strConsulta="call ProTrabajosListarIdC("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+id+");";
+        strConsulta="SELECT idTrabajo, nombre, descripcion, abono, pago, total, fechaInicio, fechaTermino, Cliente_idCliente"
+                + " FROM `trabajo` WHERE Cliente_idCliente="+id+";";
         
         try{
          ResultSet rs=BD.getInstance().sqlSelect(strConsulta);
@@ -118,6 +118,34 @@ public class DAOTrabajos {
               datos[7]=rs.getString(8);
               datos[8]=rs.getString(9);
               //datos[8]=rs.getString("idCliente");
+              
+              tablaClientes.addRow(datos);
+         }
+         rs.close();
+          }catch(SQLException e){
+         System.out.println(e);
+         Log.log(e.getMessage());
+          }
+    }
+    
+    public void listarTrabjosP(long intDesde ,long intCuantos,DefaultTableModel tablaClientes,String strBusqueda ){
+        String strConsulta;
+        String datos[]=new String [6];
+      
+//        strConsulta="call ProTrabajosListarIdC("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+id+");";
+        strConsulta="SELECT c.nombre,t.idTrabajo,t.nombre,t.abono,t.pago,t.total FROM trabajo as t JOIN cliente as c where abono+pago!=total or total=0;";
+        
+        try{
+         ResultSet rs=BD.getInstance().sqlSelect(strConsulta);
+         
+         while(rs.next()){
+              //System.out.println(res.getString("Nombres"));
+              datos[0]=rs.getString(1);
+              datos[1]=rs.getString(2);
+              datos[2]=rs.getString(3);
+              datos[3]=rs.getString(4);
+              datos[4]=rs.getString(5);
+              datos[5]=rs.getString(6);
               
               tablaClientes.addRow(datos);
          }
