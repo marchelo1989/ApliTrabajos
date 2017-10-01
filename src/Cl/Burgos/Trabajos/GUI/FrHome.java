@@ -246,6 +246,7 @@ public class FrHome extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
         cmdBuscar = new javax.swing.JButton();
+        btnImprimirReporte = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         btnAgregarT = new javax.swing.JButton();
         btnModificarT = new javax.swing.JButton();
@@ -545,6 +546,14 @@ public class FrHome extends javax.swing.JFrame {
             }
         });
 
+        btnImprimirReporte.setText("Imprimir ");
+        btnImprimirReporte.setActionCommand("");
+        btnImprimirReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -564,13 +573,17 @@ public class FrHome extends javax.swing.JFrame {
                 .addComponent(jlblTotalPaginas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdSiguiente1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(lblBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdBuscar)
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(277, 277, 277)
+                .addComponent(btnImprimirReporte)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,7 +600,9 @@ public class FrHome extends javax.swing.JFrame {
                     .addComponent(lblBuscar)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnImprimirReporte)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Aciones de Trabajo"));
@@ -931,6 +946,45 @@ public class FrHome extends javax.swing.JFrame {
         fp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnImprimirReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirReporteActionPerformed
+        // TODO add your handling code here:
+        int opcion=0;
+        do {
+            try {
+
+                opcion=Integer.parseInt(JOptionPane.showInputDialog(null,
+                    "1 Imprimir en Archivo en Word\n"
+//                    + "2 Imprimir en Archivo en PDF\n"
+//                    + "3 Imprimir en Archivo en Excel\n"
+//                    + "4 Imprimir en Archivo en Impresora\n"
+                    + "0 Salir"));
+
+            switch(opcion){
+//                case 1:
+//                imprimirWord();
+//                break;
+//                case 2:
+//                imprimirPDF();
+//                break;
+//                case 3:
+//                imprimirExel();
+//                break;
+//                case 4:
+//                imprimirImpresora();
+//                break;
+                case 0:
+                JOptionPane.showMessageDialog(null,"Programa finalizado");
+                break;
+                default:
+                JOptionPane.showMessageDialog(null, "Opcion incorreta");
+            }
+
+        } catch (Exception n) {
+            JOptionPane.showMessageDialog(null, "Error :"+n.getMessage());
+        }
+        } while (opcion!=0);
+    }//GEN-LAST:event_btnImprimirReporteActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -972,6 +1026,7 @@ public class FrHome extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarT;
     private javax.swing.JButton btnBuscarC;
     private javax.swing.JButton btnEliminarT;
+    private javax.swing.JButton btnImprimirReporte;
     private javax.swing.JButton btnModificarT;
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdBuscar;

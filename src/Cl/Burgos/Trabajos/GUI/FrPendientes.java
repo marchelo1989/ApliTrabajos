@@ -84,7 +84,7 @@ public class FrPendientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabTrabajos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTabTrabajos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
