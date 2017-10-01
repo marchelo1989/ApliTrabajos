@@ -20,7 +20,7 @@ public class ExpCliente extends Exception {
     public ExpCliente (int error) throws Exception{
         switch(error){
             case ERR_idCliente:
-                throw new Exception("El ID deve ser mayor que 0");
+                throw new Exception("El ID Cliente deve ser mayor que 0");
             case ERR_nombre:
                 throw new Exception("El Nombre debe estar entre 4...25 caracteres");
             case ERR_apellido:

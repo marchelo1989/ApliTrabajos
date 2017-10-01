@@ -8,6 +8,7 @@ package Cl.Burgos.Trabajos.GUI;
 import Cl.Burgos.Trabajos.BD.Log;
 import Cl.Burgos.Trabajos.DAO.DAOCliente;
 import Cl.Burgos.Trabajos.DAO.DAOTrabajos;
+import Cl.Burgos.Trabajos.ENT.ClCliente;
 import Cl.Burgos.Trabajos.ENT.ClTrabajo;
 import Cl.Burgos.Trabajos.FUN.Diseño;
 import Cl.Burgos.Trabajos.FUN.FormatoFecha;
@@ -111,8 +112,12 @@ public class FrHome extends javax.swing.JFrame {
         IniciarAyuda();
     }
     public ClTrabajo idTrabajo() throws Exception{
-        ClTrabajo clTrabajo = new ClTrabajo(Integer.parseInt(txtIdT.getText()));
+        ClTrabajo clTrabajo = new ClTrabajo(Integer.parseInt(campoNume(txtIdT.getText())));
         return clTrabajo;
+    }
+    public ClCliente idCliente() throws Exception{
+        ClCliente cliente = new ClCliente(idCliente);
+        return cliente;
     }
     public ClTrabajo IntTrabajo() throws Exception{
         String descripcion,abono,pago,total;
@@ -724,6 +729,11 @@ public class FrHome extends javax.swing.JFrame {
         fila = this.jTabTrabajos.rowAtPoint(evt.getPoint());
         
         if (fila > -1){
+            d.Clic(txtNombre,  ph.getNombreT());
+            d.Clic(txtAbono,  ph.getValor());
+            d.Clic(txtPago,  ph.getValor());
+            d.Clic(txtTotal,  ph.getValor());
+            d.ClicA(txtDescripcion,  ph.getDescripcion());
             try {
                 this.txtIdT.setText(String.valueOf(jTabTrabajos.getValueAt(fila, 0)));
                 
@@ -948,41 +958,17 @@ public class FrHome extends javax.swing.JFrame {
 
     private void btnImprimirReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirReporteActionPerformed
         // TODO add your handling code here:
-        int opcion=0;
-        do {
-            try {
-
-                opcion=Integer.parseInt(JOptionPane.showInputDialog(null,
-                    "1 Imprimir en Archivo en Word\n"
-//                    + "2 Imprimir en Archivo en PDF\n"
-//                    + "3 Imprimir en Archivo en Excel\n"
-//                    + "4 Imprimir en Archivo en Impresora\n"
-                    + "0 Salir"));
-
-            switch(opcion){
-//                case 1:
-//                imprimirWord();
-//                break;
-//                case 2:
-//                imprimirPDF();
-//                break;
-//                case 3:
-//                imprimirExel();
-//                break;
-//                case 4:
-//                imprimirImpresora();
-//                break;
-                case 0:
-                JOptionPane.showMessageDialog(null,"Programa finalizado");
-                break;
-                default:
-                JOptionPane.showMessageDialog(null, "Opcion incorreta");
-            }
-
-        } catch (Exception n) {
-            JOptionPane.showMessageDialog(null, "Error :"+n.getMessage());
+        String[] cliente = null;
+        String[] trabajo = null;
+        try {
+           cliente= dAOCliente.buscarIdCliente(idCliente());
+           trabajo =  dAOTrabajos.listartrabajosIdT(idTrabajo());
+        } catch (Exception ex) {
+            Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        } while (opcion!=0);
+        System.out.println(cliente[1]);
+        System.out.println(trabajo[1]);
     }//GEN-LAST:event_btnImprimirReporteActionPerformed
 
     
