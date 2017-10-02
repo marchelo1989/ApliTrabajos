@@ -101,7 +101,7 @@ public class DAOTrabajos {
       
 //        strConsulta="call ProTrabajosListarIdC("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+id+");";
         strConsulta="SELECT idTrabajo, nombre, descripcion, abono, pago, total, fechaInicio, fechaTermino, Cliente_idCliente"
-                + " FROM `Trabajo` WHERE Cliente_idCliente="+id+";";
+                + " FROM Trabajo WHERE Cliente_idCliente="+id+";";
         
         try{
          ResultSet rs=BD.getInstance().sqlSelect(strConsulta);

@@ -10,6 +10,7 @@ import Cl.Burgos.Trabajos.DAO.DAOCliente;
 import Cl.Burgos.Trabajos.DAO.DAOTrabajos;
 import Cl.Burgos.Trabajos.ENT.ClCliente;
 import Cl.Burgos.Trabajos.ENT.ClTrabajo;
+import Cl.Burgos.Trabajos.FUN.CrearWorld;
 import Cl.Burgos.Trabajos.FUN.Diseño;
 import Cl.Burgos.Trabajos.FUN.FormatoFecha;
 import Cl.Burgos.Trabajos.FUN.PlaceHolder;
@@ -795,6 +796,7 @@ public class FrHome extends javax.swing.JFrame {
 
     private void btnBuscarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCActionPerformed
         // TODO add your handling code here:
+        Limpiar();
         String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
         idCliente = Integer.parseInt(r.replace("#", ""));
         jTabTrabajos.setVisible(true);
@@ -962,17 +964,17 @@ public class FrHome extends javax.swing.JFrame {
 
     private void btnImprimirReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirReporteActionPerformed
         // TODO add your handling code here:
-        String[] cliente = null;
-        String[] trabajo = null;
+        String[] c = null;
+        String[] t = null;
         try {
-           cliente= dAOCliente.buscarIdCliente(idCliente());
-           trabajo =  dAOTrabajos.listartrabajosIdT(idTrabajo());
+           c= dAOCliente.buscarIdCliente(idCliente());
+           t =  dAOTrabajos.listartrabajosIdT(idTrabajo());
+           CrearWorld world = new CrearWorld();
+           world.crear(t, c);
         } catch (Exception ex) {
             Logger.getLogger(FrHome.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        System.out.println(cliente[1]);
-        System.out.println(trabajo[1]);
     }//GEN-LAST:event_btnImprimirReporteActionPerformed
 
     
