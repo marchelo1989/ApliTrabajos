@@ -15,6 +15,12 @@ import javax.swing.JFileChooser;
  * @author march
  */
 public class Directorio {
+    static String ubicacionW = "c:/";
+    static String ubicacionL = "/media/devtroce/java/";
+    
+    static String carpeta = "Trabajo";
+    static String SO = System.getProperty("os.name");
+    
     public String selecDirectrorio(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -31,18 +37,34 @@ public class Directorio {
     }
     
     public static void crearDirecPre(){
-        String OrigenCarpeta = "Reparaciones"; 
-        File directorio = new File("c:/"+ OrigenCarpeta ); 
-        directorio.mkdir(); 
+        if(SO.startsWith("Windows")){
+            File directorio = new File(ubicacionW+ carpeta ); 
+            directorio.mkdir(); 
+        }else{
+            File directorio = new File(ubicacionL+ carpeta ); 
+            directorio.mkdir();
+        }
+        
     }
     public void abrirDirecPre() throws IOException{
-        String OrigenCarpeta = "Reparaciones"; 
-        File directorio = new File("c:/"+ OrigenCarpeta );
-        Desktop.getDesktop().open(directorio);
+        if(SO.startsWith("Windows")){
+            File directorio = new File(ubicacionW+ carpeta );
+            Desktop.getDesktop().open(directorio);
+        }else{
+            File directorio = new File(ubicacionL+ carpeta );
+            Desktop.getDesktop().open(directorio);
+        }
+        
     }
     public static File selectDirecPre(){
-        String url = "c:/Reparaciones";
-        File f = new File(url);
+        File f = null;
+        if(SO.startsWith("Windows")){
+            String url = ubicacionW+carpeta;
+            f = new File(url);
+        }else{
+            String url = ubicacionL+carpeta;
+            f = new File(url);
+        }
         return f;
     }
 }

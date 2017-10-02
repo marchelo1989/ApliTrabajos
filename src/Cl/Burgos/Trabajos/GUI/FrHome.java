@@ -56,6 +56,7 @@ public class FrHome extends javax.swing.JFrame {
         btnModificarT.setEnabled(false);
         btnEliminarT.setEnabled(false);
         jTabTrabajos.setVisible(false);
+        btnImprimirReporte.setEnabled(false);
         
         //para Cargar el ComboBox
         this.jcbClientes.setSelectedItem(null);
@@ -109,6 +110,7 @@ public class FrHome extends javax.swing.JFrame {
         btnAgregarT.setEnabled(false);
         btnModificarT.setEnabled(false);
         btnEliminarT.setEnabled(false);
+        btnImprimirReporte.setEnabled(false);
         IniciarAyuda();
     }
     public ClTrabajo idTrabajo() throws Exception{
@@ -756,6 +758,7 @@ public class FrHome extends javax.swing.JFrame {
                 
                 this.btnEliminarT.setEnabled(true);
                 this.btnModificarT.setEnabled(true);
+                this.btnImprimirReporte.setEnabled(true);
                 
 //                if(Long.valueOf( datosCliente[0])>0){
 //                    this.btnActualizarPC.setLabel("Actualizar");
@@ -795,6 +798,7 @@ public class FrHome extends javax.swing.JFrame {
         String r = this.jcbClientes.getSelectedItem().toString().substring(0, 4).toString();
         idCliente = Integer.parseInt(r.replace("#", ""));
         jTabTrabajos.setVisible(true);
+        this.btnImprimirReporte.setEnabled(false);
         defineTablaTrabajos("", idCliente);
     }//GEN-LAST:event_btnBuscarCActionPerformed
 

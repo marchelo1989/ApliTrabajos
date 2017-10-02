@@ -24,7 +24,7 @@ public class BD {
     private static String myDriver = "com.mysql.jdbc.Driver";
     
     //En el mismo Sistema
-    private static String myUrl = "jdbc:mysql://localhost:3306/trabajos";String user="root";String clave="";
+    private static String myUrl = "jdbc:mysql://localhost:3306/Trabajos";String user="root";String clave="";
     //En el servidor windows 2012
 //    private static String myUrl = "jdbc:mysql://10.20.30.1:3306/reparacion";String user="marchelo";String clave="HP2117la";
     //En el Notebook Windows 7
