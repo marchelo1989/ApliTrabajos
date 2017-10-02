@@ -101,7 +101,7 @@ public class DAOTrabajos {
       
 //        strConsulta="call ProTrabajosListarIdC("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+id+");";
         strConsulta="SELECT idTrabajo, nombre, descripcion, abono, pago, total, fechaInicio, fechaTermino, Cliente_idCliente"
-                + " FROM `trabajo` WHERE Cliente_idCliente="+id+";";
+                + " FROM `Trabajo` WHERE Cliente_idCliente="+id+";";
         
         try{
          ResultSet rs=BD.getInstance().sqlSelect(strConsulta);
@@ -133,7 +133,7 @@ public class DAOTrabajos {
         String datos[]=new String [6];
       
 //        strConsulta="call ProTrabajosListarIdC("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+id+");";
-        strConsulta="SELECT c.nombre,t.idTrabajo,t.nombre,t.abono,t.pago,t.total FROM trabajo as t JOIN cliente as c on c.idCliente = t.Cliente_idCliente where abono+pago!=total or total=0";
+        strConsulta="SELECT c.nombre,t.idTrabajo,t.nombre,t.abono,t.pago,t.total FROM Trabajo as t JOIN Cliente as c on c.idCliente = t.Cliente_idCliente where abono+pago!=total or total=0";
         
         try{
          ResultSet rs=BD.getInstance().sqlSelect(strConsulta);

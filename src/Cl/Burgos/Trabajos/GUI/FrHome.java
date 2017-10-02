@@ -123,13 +123,13 @@ public class FrHome extends javax.swing.JFrame {
     }
     public ClTrabajo IntTrabajo() throws Exception{
         String descripcion,abono,pago,total;
-        if(comparar(txtAbono.getText(), ph.getValor())){abono="";
+        if(!comparar(txtAbono.getText(), ph.getValor())){abono="";
         }else{abono=txtAbono.getText();}
         if(!comparar(txtDescripcion.getText(), ph.getDescripcion())){descripcion="";
         }else{descripcion=txtDescripcion.getText();}
-        if(comparar(txtPago.getText(), ph.getValor())){pago="";
+        if(!comparar(txtPago.getText(), ph.getValor())){pago="";
         }else{pago=txtPago.getText();}
-        if(comparar(txtTotal.getText(), ph.getValor())){total="";
+        if(!comparar(txtTotal.getText(), ph.getValor())){total="";
         }else{total=txtTotal.getText();}
         ClTrabajo clTrabajo = new ClTrabajo(txtNombre.getText(), descripcion, 
                 Integer.parseInt(campoNume(abono)), Integer.parseInt(campoNume(pago)), 

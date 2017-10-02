@@ -16,7 +16,7 @@ import javax.swing.JFileChooser;
  */
 public class Directorio {
     static String ubicacionW = "c:/";
-    static String ubicacionL = "/media/devtroce/java/";
+    static String ubicacionL = "/home/marchelo/Escritorio/";
     
     static String carpeta = "Trabajo";
     static String SO = System.getProperty("os.name");
