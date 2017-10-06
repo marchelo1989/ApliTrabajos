@@ -82,7 +82,7 @@ public class CrearWorld {
                 run.setText(" Pago: "+t[4]);
                 run.setText(" Total: "+t[5]);
                 run.addBreak();
-                run.setText(" Fecha de Inicio: "+FormatoFecha.fDateS(FormatoFecha.mostrarFechaD(t[6])));
+                run.setText(" Fecha de Inicio: "+t[6]);
                 run.setText(" Fecha de Termino: "+t[7]);
                 
                 document.write(output);

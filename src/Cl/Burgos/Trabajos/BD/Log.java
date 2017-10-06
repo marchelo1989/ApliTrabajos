@@ -31,7 +31,7 @@ public class Log {
             Date date = new Date();
             out.println(dateFormat.format(date) + ":"+ msg + "\r\n");
             
-            Directorio.abrirArchivo(url);
+//            Directorio.abrirArchivo(url);
             
         }catch (IOException e) {
             //exception handling left as an exercise for the reader
