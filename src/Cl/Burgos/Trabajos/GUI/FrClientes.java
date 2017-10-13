@@ -8,8 +8,6 @@ package Cl.Burgos.Trabajos.GUI;
 import Cl.Burgos.Trabajos.BD.Log;
 import Cl.Burgos.Trabajos.DAO.DAOCliente;
 import Cl.Burgos.Trabajos.ENT.ClCliente;
-import Cl.Burgos.Trabajos.FUN.Diseño;
-import Cl.Burgos.Trabajos.FUN.PlaceHolder;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,8 +25,6 @@ import javax.swing.table.DefaultTableModel;
 public class FrClientes extends javax.swing.JFrame {
 
     DAOCliente dAOCliente = new DAOCliente();
-    Diseño d = new Diseño();
-    PlaceHolder ph = new PlaceHolder();
     long lngNumPaginas;
     
     /**
@@ -40,12 +36,11 @@ public class FrClientes extends javax.swing.JFrame {
         txtNumReg.setText("9");
         txtPagina.setText("1");
         
-        IniciarAyuda();
-        
         defineTablaClientes("",1);
         
         btnModificar.setEnabled(false);
         btnEliminar.setEnabled(false);
+        btnEliminar.setVisible(false);
         btnAgregar.setEnabled(false);
         
         this.setLocationRelativeTo(null);
@@ -70,39 +65,13 @@ public class FrClientes extends javax.swing.JFrame {
         
     }
     
-    public void IniciarAyuda() {
-        d.Mensaje(txtNombre, ph.getNombre(), 0);
-        d.Mensaje(txtCelular, ph.getCelular(), 0);
-        d.Mensaje(txtCorreo, ph.getCorreo(), 0);
-    }
-    public boolean comparar(String n,String n2){
-        boolean v;
-        if(n!=n2){
-            v=false;
-        }else{
-            v=true;
-        }
-        return v;
-    }
     public ClCliente datosClienteAll() throws Exception{
         ClCliente cliente = new ClCliente(Integer.parseInt(txtId.getText()), 
                 txtNombre.getText(), txtCelular.getText(), txtCorreo.getText());
         return cliente;
     }
     public ClCliente datosCliente() throws Exception{
-        String celular;
-        String correo;
-        if(comparar(txtCelular.getText(), ph.getCelular())){
-            celular=txtCelular.getText();
-        }else{
-            celular="";
-        }
-        if(comparar(txtCorreo.getText(), ph.getCorreo())){
-            correo=txtCorreo.getText();
-        }else{
-            correo="";
-        }
-        ClCliente cliente = new ClCliente(txtNombre.getText(), celular, correo);
+        ClCliente cliente = new ClCliente(txtNombre.getText(), txtCelular.getText(), txtCorreo.getText());
         return cliente;
     }
     public ClCliente idCliente() throws Exception{
@@ -161,7 +130,6 @@ public class FrClientes extends javax.swing.JFrame {
         btnModificar.setEnabled(false);
         btnEliminar.setEnabled(false);
         btnAgregar.setEnabled(false);
-        IniciarAyuda();
     }
     
     /**
@@ -219,16 +187,6 @@ public class FrClientes extends javax.swing.JFrame {
         jLabel4.setText("Correo:");
 
         txtNombre.setToolTipText("");
-        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreFocusLost(evt);
-            }
-        });
-        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtNombreMouseClicked(evt);
-            }
-        });
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
@@ -238,30 +196,9 @@ public class FrClientes extends javax.swing.JFrame {
             }
         });
 
-        txtCelular.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCelularFocusLost(evt);
-            }
-        });
-        txtCelular.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCelularMouseClicked(evt);
-            }
-        });
         txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCelularKeyTyped(evt);
-            }
-        });
-
-        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoFocusLost(evt);
-            }
-        });
-        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCorreoMouseClicked(evt);
             }
         });
 
@@ -566,9 +503,6 @@ public class FrClientes extends javax.swing.JFrame {
         long lngCliente;
         
         if (fila > -1){
-            d.Clic(txtNombre,  ph.getNombre());
-            d.Clic(txtCelular,  ph.getCelular());
-            d.Clic(txtCorreo,  ph.getCorreo());
             try {
                 this.txtId.setText(String.valueOf(JTabClientes.getValueAt(fila, 0)));
                 
@@ -671,36 +605,6 @@ public class FrClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnAgregar.setEnabled(txtNombre.getText().length() != 0);
     }//GEN-LAST:event_txtNombreKeyReleased
-
-    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
-        // TODO add your handling code here:
-        d.Mensaje(txtNombre, ph.getNombre(), txtNombre.getText().trim().length());
-    }//GEN-LAST:event_txtNombreFocusLost
-
-    private void txtNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMouseClicked
-        // TODO add your handling code here:
-        d.Clic(txtNombre,  ph.getNombre());
-    }//GEN-LAST:event_txtNombreMouseClicked
-
-    private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
-        // TODO add your handling code here:
-        d.Mensaje(txtCelular, ph.getCelular(), txtCelular.getText().trim().length());
-    }//GEN-LAST:event_txtCelularFocusLost
-
-    private void txtCelularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCelularMouseClicked
-        // TODO add your handling code here:
-        d.Clic(txtCelular,  ph.getCelular());
-    }//GEN-LAST:event_txtCelularMouseClicked
-
-    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
-        // TODO add your handling code here:
-        d.Mensaje(txtCorreo, ph.getCorreo(), txtCorreo.getText().trim().length());
-    }//GEN-LAST:event_txtCorreoFocusLost
-
-    private void txtCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMouseClicked
-        // TODO add your handling code here:
-        d.Clic(txtCorreo,  ph.getCorreo());
-    }//GEN-LAST:event_txtCorreoMouseClicked
 
     
     /**
