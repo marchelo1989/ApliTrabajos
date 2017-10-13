@@ -52,6 +52,8 @@ public class FrHome extends javax.swing.JFrame {
         btnEliminarT.setEnabled(false);
         jTabTrabajos.setVisible(false);
         btnImprimirReporte.setEnabled(false);
+        //Bloqueo de Jtable
+        this.jTabTrabajos.disable();
         
         //para Cargar el ComboBox
         this.jcbClientes.setSelectedItem(null);

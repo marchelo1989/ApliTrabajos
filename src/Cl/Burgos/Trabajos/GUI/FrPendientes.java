@@ -26,6 +26,9 @@ public class FrPendientes extends javax.swing.JFrame {
         this.setResizable(false); 
         this.setTitle("Pagos Pendientes");
         
+        //Bloqueo de Jtable
+        this.jTabTrabajos.disable();
+        
         defineTablaPendientes("", 1);
     }
 

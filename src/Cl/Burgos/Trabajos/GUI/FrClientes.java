@@ -43,6 +43,9 @@ public class FrClientes extends javax.swing.JFrame {
         btnEliminar.setVisible(false);
         btnAgregar.setEnabled(false);
         
+        //Bloqueo de Jtable
+        this.JTabClientes.disable();
+        
         this.setLocationRelativeTo(null);
         this.setResizable(false); 
         this.setTitle("Clientes");
