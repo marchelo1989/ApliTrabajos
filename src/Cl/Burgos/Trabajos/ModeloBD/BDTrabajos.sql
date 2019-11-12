@@ -383,49 +383,4 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
--- -----------------------------------------------------
--- Data for table `Trabajos`.`Cliente`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `Trabajos`;
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (1, 'Alejandra Orellana', '940099121', 'aleja.fran@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (2, 'Miguel Gallardo', '974326767', 'elterriblemg@outlook.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (3, 'jorge solis', '984439788', 'jsolis79@hotmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (4, 'Boris Morales', '940035373', 'mingaproducciones@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (5, 'Paulina Ramos', '993454956', 'paulimarti.ramos@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (6, 'Edith Bustos', '962665498', 'edith.bustos.ortiz@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (7, 'Patricia Pinto', '949460049', 'miguelsolotuya@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (8, 'Sebastian Gamboa', '976530865', 'eduard.hd9@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (9, 'Susana Salinas', '989738996', 'susymofles@hotmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (10, 'Virginia Letelier', '977339462', 'virginialetelier@gmail.com');
-INSERT INTO `Trabajos`.`Cliente` (`idCliente`, `nombre`, `celular`, `correo`) VALUES (11, 'Marcelo Burgos', '990715586', 'marchelo.1989@live.cl');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `Trabajos`.`Trabajo`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `Trabajos`;
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (1, 'Reparacion', 'reparacion de motor', 10000, 0, 25000, '2017/02/02', '2017/02/02', 1);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (2, 'intalcion', 'intalacion de califon', 50000, 0, 100000, '2017/09/08', '2017/02/02', 1);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (3, 'reparacion', 'Al fondo de la plaza se elevaba el Ayuntamiento, un edificio encalado, con un largo balcón en el primer piso y ventanas enrejadas en la planta baja. Junto al portalón de piedra, en letras doradas, se ', 0, 0, 150000, '2017/09/08', '2017/09/08', 1);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (4, 'mantencion', 'asdasdasd', 0, 0, 0, '2017/09/08', '2017/09/08', 1);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (5, 'mantencion', 'asdasdasdasdasd', 0, 0, 0, '2017/09/08', '2017/09/08', 1);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (6, 'mantencion', 'asdasd', 0, 0, 0, '2017/09/08', '2017/09/08', 2);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (7, 'wqeqweqwe', 'wqeqwewq', 0, 0, 0, '2017/09/08', '2017/09/08', 2);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (8, 'sadasdas', 'asdasd', 0, 0, 0, '2017/09/08', '2017/09/08', 2);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (9, 'sadasd', 'asdafafqw', 10000, 0, 200000, '2017/09/08', '2017/09/08', 2);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (10, 'lkasjasdjkl', 'kjlasjlkdsaljqw', 0, 20000, 20000, '2017/09/08', '2017/09/08', 2);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (11, 'asfasasf', 'ghfghfdhgf', 10000, 0, 25000, '2017/09/08', '2017/09/08', 3);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (12, 'qwrtergdf', 'gfdh', 0, 0, 0, '2017/09/08', '2017/09/08', 3);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (13, 'ashdgfjgthj', 'gfhd', 20000, 30000, 80000, '2017/09/08', '2017/09/08', 3);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (14, 'fghfgjtyuj', 'fgh', 0, 20000, 20000, '2017/09/08', '2017/09/08', 3);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (15, 'h', 'fdhjt', 10000, 5000, 15000, '2017/09/08', '2017/09/08', 3);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (16, 'fg', 'fghfgh', 0, 0, 0, '2017/09/08', '2017/09/08', 4);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (17, 'hrdtyjrt', 'frd', 50000, 50000, 10000, '2017/09/08', '2017/09/08', 4);
-INSERT INTO `Trabajos`.`Trabajo` (`idTrabajo`, `nombre`, `descripcion`, `abono`, `pago`, `total`, `fechaInicio`, `fechaTermino`, `Cliente_idCliente`) VALUES (18, 'rtjrtjy', 'ht', 0, 50000, 50000, '2017/09/08', '2017/09/08', 4);
-
-COMMIT;
 
